@@ -1,0 +1,96 @@
+# Question 1
+
+import random 
+
+def checkint(L) :
+    L1 = []
+    for i in range(len(L)) : 
+        if L[i].isnumeric() :
+            L[i] = int(L[i])
+            L1.append(L[i])
+        elif L[i][0] == '-' and L[i][1::].isnumeric() :
+            L[i] = int(L[i])
+            k= -1 * L[i]
+            L1.append(k)
+        else :
+            continue
+    return L1
+
+def checkprime(n) :
+    chk = True
+    for i in range(2,n) :
+        if n % i ==0 :
+            chk = False # not prime
+            break
+        else :
+            continue
+    return chk         
+
+L = input("Enter data : " )
+
+if L == "" :
+    print("WARNING : No data!")
+
+else :
+    L = L.split()
+    L1 = checkint(L)
+    if len(L1) == 0 :
+        print("WARNING : No Data!")
+    else : 
+        print("Extracted integer data list, L = ",L1)
+
+        p = random.randint(0, len(L1)-1)
+        prime = L1[p]
+
+        if prime <= 1 :
+            print("Number", L1[p], "in index", p, "is not greater than 1")
+        else :
+            if checkprime(L1[p]) == True  :
+                print("Number", L1[p], "in index", p, "is prime")
+            else :
+                print("Number", L1[p], "in index", p, "is not prime")
+                
+            
+    
+##########################################################################3
+
+# Question 2
+
+D = {}
+L = []
+
+while True :
+    n = input("Enter student data ( name score ) : "  )
+    if n == ""  :
+        break
+    else :
+        n = n.split()
+        if n[0] not in L :
+             D[n[0]] = int(n[1])
+             L.append(n[0])
+        else :
+            print("WARNING : Already exist name")
+if not D :
+    print("*************************")
+    print("WARNING : No data!")
+else :
+    print("*********************")
+
+    L1 = []
+
+    k = input("Enter student name : ")
+    Lkey = list(D.keys())
+
+    if k not in Lkey :
+        print("WARNING : No exists name")
+
+    else :
+        for i in range(len(Lkey)) : 
+            if D[Lkey[i]] > D[k] :
+                L1.append(Lkey[i])
+
+        if len(L1) == 0 :
+            print("No students have hgiher scores")
+
+        for i in range(len(L1)) : 
+            print(L1[i],"'s score is", D[L1[i]])
