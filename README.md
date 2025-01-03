@@ -1,2 +1,2 @@
 # Basic-AI-Programming
-COR1010
+COR1XX0
